@@ -9,55 +9,40 @@ function operate(operator,num1,num2){
         return num1*num2;
     else if(operator=='-')
         return num1-num2;
-    else return num1/num2;
+    else if(num2!=0) return num1/num2;
 
-}
-let numArray=[];
-let operation;
-
-
-function push(q){
-    numArray.push(q);
-    let l =numArray.length;
-    let sum=0;
-    for(let k=0;k<l;k++){
-        sum=sum+numArray[k]*Math.pow(10,l-k-1);
-    }
-    bottomDisplay.textContent=sum;
-}
-function half(operator){
-    if(topDisplay.textContent!=''){
-        let x=parseInt(bottomDisplay.textContent);
-        let y=topDisplay.textContent
-        let len=y.length;
-        let z=parseInt(y.substr(0,len-1));
-        let op=y.substr(len-1,len);
-        let ans=operate(op,z,x);
-        bottomDisplay.textContent='';
-        topDisplay.textContent=ans+operator;
-    }
-    else{
-        let y=bottomDisplay.textContent;
-        bottomDisplay.textContent='';
-        topDisplay.textContent=y+operator;
-        numArray.length=0;
-    }
-    numArray.length=0;
 }
 buttons=document.querySelectorAll('button')
 for(let i=0;i<buttons.length;i++){
     buttons[i].addEventListener('click',function(){
         let text=buttons[i].textContent;
-        if(buttons[i].id=='clear'||buttons[i].id=='delete'){
+        if(buttons[i].id=='clear'){
             topDisplay.textContent='';
             bottomDisplay.textContent='';
         }
+        else if(buttons[i].id=='delete'){
+            if((bottomDisplay.textContent).length!=0){
+                let y=bottomDisplay.textContent;
+                let l=y.length;
+                let z=y.substr(0,(l-1));
+                bottomDisplay.textContent=z;
+            }
+            else{
+                bottomDisplay.textContent=topDisplay.textContent;
+                topDisplay.textContent='';
+                let y=bottomDisplay.textContent;
+                let l=y.length;
+                let z=y.substr(0,(l-1));
+                bottomDisplay.textContent=z;
+            }
+        }
 
         else if(buttons[i].className=='num'){
-            push(buttons[i].textContent);
+            bottomDisplay.textContent+=buttons[i].textContent
         }
         else if(buttons[i].className=='operator'){
-            half(buttons[i].textContent)
+            topDisplay.textContent=bottomDisplay.textContent+buttons[i].textContent;
+            bottomDisplay.textContent='';
         }
         else if(buttons[i].className=='solve'){
             let x=parseInt(bottomDisplay.textContent);
@@ -65,10 +50,15 @@ for(let i=0;i<buttons.length;i++){
             let len=y.length;
             let z=parseInt(y.substr(0,len-1));
             let op=y.substr(len-1,len);
-            let ans=operate(op,z,x);
-            topDisplay.textContent='';
-            bottomDisplay.textContent=ans;
-            numArray.length=0;
+            if(op=='/'&&x==0){
+            topDisplay.textContent='Nimga you are a damm fool';
+            bottomDisplay.textContent='';
+            }
+            else{
+                let ans=operate(op,z,x);
+                topDisplay.textContent='';
+                bottomDisplay.textContent=ans;
+            }
         }
 
     })
