@@ -2,19 +2,20 @@
     font-family:'Courier New', Courier, monospace;
 }
 body{
-    background-color: aqua;
+    background-color: orange;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 145px;
+    margin-top: 75px;
 }
 .body{
     width:280px;
     height: 365px;
     border: 3px solid black;
     border-radius: 10px;
-    background-color:gray;
+    background-color:darkmagenta;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,10 +55,13 @@ body{
     height:30px;
     border:2px solid black;
     border-radius: 5px;
-    background-color: rosybrown;
+    background-color: darkcyan;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.second,.third,.fourth,.fifth{
+    margin-left: 11px;
 }
 .second{
     display: flex;
@@ -99,8 +103,12 @@ body{
     height:45px;
     border:1px solid black;
     border-radius: 3px;
-    background-color: blue;
+    background-color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+button:hover{
+    scale: 1.1;
 }
