@@ -52,10 +52,10 @@ for(let i=0;i<buttons.length;i++){
         }
         else if(buttons[i].className=='solve'){
 
-            let x=parseInt(bottomDisplay.textContent);
+            let x=Number(bottomDisplay.textContent);
             let y=topDisplay.textContent
             let len=y.length;
-            let z=parseInt(y.substr(0,len-1));
+            let z=Number(y.substr(0,len-1));
             let op=y.substr(len-1,len);
             if(op=='/'&&x==0){
             topDisplay.textContent='SmartAss';

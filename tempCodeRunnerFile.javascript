@@ -1,10 +1,3 @@
-let str='9.6'
-let str2='907'
-let str3='9..'
-
-let pos=str.search(/\./);
-console.log(pos);
-pos=str2.search(/\./);
-console.log(pos);
-pos=str3.search(/\./);
-console.log(pos);
+let x="3.14";
+let y="1";
+console.log(Number(x)*Number(y))
