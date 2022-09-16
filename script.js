@@ -10,8 +10,8 @@ function operate(operator,num1,num2){
     else if(operator=='-')
         return num1-num2;
     else if(num2!=0) return num1/num2;
-
 }
+
 buttons=document.querySelectorAll('button')
 for(let i=0;i<buttons.length;i++){
     buttons[i].addEventListener('click',function(){
@@ -38,20 +38,27 @@ for(let i=0;i<buttons.length;i++){
         }
 
         else if(buttons[i].className=='num'){
-            bottomDisplay.textContent+=buttons[i].textContent
+            if(buttons[i].textContent=='.'){
+                let str=bottomDisplay.textContent;
+                let pos=str.search(/\./);
+                if(pos!=-1) bottomDisplay.textContent=str;
+                else bottomDisplay.textContent+=buttons[i].textContent;
+            }
+            else bottomDisplay.textContent+=buttons[i].textContent
         }
         else if(buttons[i].className=='operator'){
             topDisplay.textContent=bottomDisplay.textContent+buttons[i].textContent;
             bottomDisplay.textContent='';
         }
         else if(buttons[i].className=='solve'){
+
             let x=parseInt(bottomDisplay.textContent);
             let y=topDisplay.textContent
             let len=y.length;
             let z=parseInt(y.substr(0,len-1));
             let op=y.substr(len-1,len);
             if(op=='/'&&x==0){
-            topDisplay.textContent='Nimga you are a damm fool';
+            topDisplay.textContent='SmartAss';
             bottomDisplay.textContent='';
             }
             else{
